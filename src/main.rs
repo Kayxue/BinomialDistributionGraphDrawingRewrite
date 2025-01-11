@@ -1,4 +1,7 @@
-use plotly::{layout::{Axis, Margin}, Bar, ImageFormat, Layout, Plot};
+use plotly::{
+    layout::{Axis, Margin},
+    Bar, ImageFormat, Layout, Plot,
+};
 use rand_distr::{Binomial, Distribution};
 
 fn main() {
@@ -10,15 +13,25 @@ fn main() {
     }
 
     let t = Bar::new((0..=10000).collect(), testResult);
-    let mut plot=Plot::new();
+    let mut plot = Plot::new();
     plot.add_trace(t);
 
-    let layout=Layout::new()
-    .title("Binomial")
-    .x_axis(Axis::new().title("Success Count").auto_range(false).range(vec![60,140]))
-    .y_axis(Axis::new().title("Count").auto_range(false).range(vec![0,500]));
+    let layout = Layout::new()
+        .title("Binomial")
+        .x_axis(
+            Axis::new()
+                .title("Success Count")
+                .auto_range(false)
+                .range(vec![60, 140]),
+        )
+        .y_axis(
+            Axis::new()
+                .title("Count")
+                .auto_range(false)
+                .range(vec![0, 500]),
+        );
 
     plot.set_layout(layout);
 
-    plot.write_image("output.png", ImageFormat::PNG, 1280 , 720, 1.0);
+    plot.write_image("output.png", ImageFormat::PNG, 1280, 720, 1.0);
 }
